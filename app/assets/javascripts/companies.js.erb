@@ -1,0 +1,39 @@
+$(document).on('turbolinks:load', function() {
+	$("input[name='query']").on('input', function(event) {
+		var buscar = $(this).val();
+
+		$.ajax({
+			url: '/companies',
+			type: 'GET',
+			dataType: 'script',
+			data: {
+				filtro: buscar
+			},
+		})
+
+	});
+	$('button[name="enviar"]').on('click', function(event) {
+		event.preventDefault();
+		var at = $("input[name='authenticity_token']").val();
+		var title = $("input[name='title']").val();
+		var content = $("textarea[name='content']").val();
+
+		$.ajax({
+			url: '/companies',
+			type: 'POST',
+			dataType: 'script',
+			data: {
+				authenticity_token: at,
+				company: {
+					title: title,
+					content: content
+				}
+			},
+		})
+		.done(function(){
+			$("input[name='title']").val("");
+			$("textarea[name='content']").val("");
+		});	
+	});
+});
+

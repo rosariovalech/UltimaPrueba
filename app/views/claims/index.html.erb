@@ -1,0 +1,5 @@
+<h3>Reclamos</h3>
+
+<p>
+	<%= select :claim, :name, @claims.collect {|c| [c.name, c.id]} %>
+</p>

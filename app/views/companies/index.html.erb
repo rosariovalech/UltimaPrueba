@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Companies</h1>
+
+<p>
+  <label for="query">Buscador:</label>
+  <input type="text" name="query">
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="tabla_index">
+    <%= render 'contenido_index', companies: @companies %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company', new_company_path %>
+
+<form>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="title">Título</label>
+  <input type="text" name="title">
+  <label for="content">Contenido</label>
+  <textarea name="content"></textarea>
+  <button name="enviar">Enviar</button>
+</form>
